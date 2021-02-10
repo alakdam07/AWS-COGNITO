@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from "react-router-dom";
 
-export default function SigninLinks() {
+export default function SignoutLinks() {
   return (
     <div>
       <div>

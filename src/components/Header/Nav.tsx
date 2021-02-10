@@ -1,17 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import SigninLinks from './SigninLinks';
 import SignoutLinks from './SignoutLinks';
 import useHandlder from '../configHandler/useHandler';
 
+
 const Nav = () => {
-  const { isAuthenticated } = useHandlder();
+  const { getAuthenticatedUser } = useHandlder();
+
+
+  const Links = getAuthenticatedUser() ? <SigninLinks /> : <SignoutLinks />
   return (
     <nav className="nav-wrapper grey darken-3">
       <div className="container">
-        <Link to='/' className="brand-logo">Logo</Link>
+        <h2 className="brand-logo">Logo</h2>
         {
-          isAuthenticated ? <SigninLinks /> : <SignoutLinks />
+          Links
         }
 
       </div>
