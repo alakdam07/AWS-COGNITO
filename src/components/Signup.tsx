@@ -1,21 +1,23 @@
 import React, { useState } from 'react'
-import { CognitoUserPool, CognitoUserAttribute } from 'amazon-cognito-identity-js';
+import { CognitoUserAttribute } from 'amazon-cognito-identity-js';
+import Confirm from './Confirmation';
+import useHandlder from './configHandler/useHandler';
 
-const SignIn = () => {
+const SignUp = () => {
+  const { userPool } = useHandlder();
+
   const [state, setState] = useState({
     username: "",
     email: "",
     password: "",
     comfirmpassword: "",
-    error: null
+    error: undefined,
+
   });
 
-  const poolData = {
-    UserPoolId: 'us-east-1_IEyFfUupx', // Your user pool id here
-    ClientId: '63fc9g5c3g9vhqdalrv9eqhoa2', // Your client id here
-  };
+  const [confirm, setconfirm] = useState(false)
 
-  const userPool = new CognitoUserPool(poolData);
+
 
   const { username, email, password, comfirmpassword, error } = state;
   const attriList: CognitoUserAttribute[] = [];
@@ -35,20 +37,21 @@ const SignIn = () => {
     e.preventDefault();
     console.log(state);
     userPool.signUp(username, password, attriList, null, (err, data) => {
-      console.log("Error", err);
-      const { code, name, message } = err;
-      if (message) { alert(message) }//setState({ ...state, error: message }),  }
+      const { message } = err;
+      if (message) setState({ ...state, error: message })
       else { console.log(data) }
     })
     setState({
+      ...state,
       username: "",
       email: "",
       password: "",
       comfirmpassword: ""
     })
 
-    alert('please visit your email')
   }
+
+
   return (
     <div className="App">
       <div className="App">
@@ -97,19 +100,34 @@ const SignIn = () => {
                   id="comfirmpassword"
                 />
               </div>
+
             </div>
+            {error ? <p style={{ color: 'red' }}>{error}</p> : null}
             <button
               className="btn waves-effect waves-light"
               type="submit"
               name="action"
+              disabled={!state.username}
             >
               Submit
           </button>
+
           </form>
+          <button
+            style={{ marginTop: 10 }}
+            className="btn waves-effect waves-light"
+            onClick={() => setconfirm(!confirm)}
+
+          >
+            Confirm
+          </button>
+          {
+            confirm ? <Confirm /> : null
+          }
         </div>
       </div>
     </div>
   )
 }
 
-export default SignIn;
+export default SignUp;
