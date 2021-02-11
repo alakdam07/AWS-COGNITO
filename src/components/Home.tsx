@@ -12,16 +12,18 @@ const Home = () => {
   }, [])
 
   const fetchData = async () => {
-    const response = await fetch(`https://jsonplaceholder.typicode.com/posts`);
+    const response = await fetch(`https://fcvguv9gpb.execute-api.us-east-1.amazonaws.com/dev`);
     const data = await response.json();
-    setstate(data)
+    console.log(data);
+
+    setstate(data.item)
   }
 
   return getAuthenticatedUser() === null ? <Redirect to="/signin" /> :
     <div className="row">
       <h1>hello welcome to home</h1>
       {
-        state?.map((i: string, id: number) => <h1 key={id}>{i.title}</h1>)
+        state?.map((i: any) => <h1 >{i.artist}</h1>)
       }
     </div>
 
