@@ -22,6 +22,9 @@ export default function useHandler() {
     [],
   );
 
+  console.log(getAuthenticatedUser());
+
+
   useEffect(() => {
     getAuthenticatedUser()
   }, [getAuthenticatedUser])
@@ -29,6 +32,7 @@ export default function useHandler() {
   const signOut = () => {
     return userPool.getCurrentUser()?.signOut()
   }
+  console.log(getAuthenticatedUser());
 
   return {
     loading,

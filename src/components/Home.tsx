@@ -6,20 +6,22 @@ import { Redirect } from 'react-router-dom';
 const Home = () => {
   const [state, setstate] = useState([]);
   const { getAuthenticatedUser } = useHandlder();
+
   useEffect(() => {
     fetchData()
   }, [])
+
   const fetchData = async () => {
-    const response = await fetch(`${api}/all`);
+    const response = await fetch(`https://jsonplaceholder.typicode.com/posts`);
     const data = await response.json();
-    setstate(data.item)
+    setstate(data)
   }
 
   return getAuthenticatedUser() === null ? <Redirect to="/signin" /> :
     <div className="row">
       <h1>hello welcome to home</h1>
       {
-        state?.map((i, index) => <h1 key={index}>{i.income}</h1>)
+        state?.map((i: string, id: number) => <h1 key={id}>{i.title}</h1>)
       }
     </div>
 
