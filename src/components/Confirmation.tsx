@@ -6,10 +6,9 @@ import { useHistory } from "react-router-dom";
 const Confirmation = () => {
   const history = useHistory();
   const poolData = {
-    UserPoolId: 'us-east-1_IEyFfUupx', // Your user pool id here
-    ClientId: '63fc9g5c3g9vhqdalrv9eqhoa2', // Your client id here
+    UserPoolId: 'us-east-1_9gLKIVCjP',
+    ClientId: '629n5o7ahjrpv6oau9reo669gv',
   };
-
   const [state, setState] = useState({
     username: "",
     verification: "",

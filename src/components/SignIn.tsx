@@ -39,18 +39,22 @@ const SignUp = () => {
     congnitoUser.authenticateUser(authDetails, {
       onSuccess(result: CognitoUserSession) {
         console.log(result);
-        history.push('/')
+        setState({
+          ...state,
+          username: '',
+          password: ''
+        })
+        if (result) {
+          history.push("/");
+        }
+        window.location.reload();
       },
       onFailure(err) {
         const { message } = err;
         setState({ ...state, error: message })
       }
     })
-    setState({
-      ...state,
-      username: "",
-      password: ""
-    })
+
   }
 
 

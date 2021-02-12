@@ -6,7 +6,7 @@ export default function SigninLinks() {
   const { getAuthenticatedUser } = useHandlder()
   const Logout = () => {
     getAuthenticatedUser()?.signOut();
-    console.log("sign out succe");
+    window.location.reload();
   }
 
   return (
