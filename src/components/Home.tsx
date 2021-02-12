@@ -13,7 +13,7 @@ const Home = () => {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  });
 
   const fetchData = async () => {
     const response = await fetch(`https://jsonplaceholder.typicode.com/posts`);

@@ -2,12 +2,11 @@ import React, { useCallback, useEffect } from 'react';
 import { CognitoUserPool } from 'amazon-cognito-identity-js';
 
 const Pool_Data = {
-  UserPoolId: process.env.REACT_APP_COGNITO_USERPOOL_ID,
-  ClientId: process.env.REACT_APP_COGNITO_ClIENT_ID
+  UserPoolId: "us-east-1_9gLKIVCjP",
+  ClientId: "629n5o7ahjrpv6oau9reo669gv"
 };
 
 export default function useHandler() {
-
 
   const userPool = new CognitoUserPool(Pool_Data)
 

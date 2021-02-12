@@ -1,14 +1,10 @@
-import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
+import React from "react";
 import SigninLinks from './SigninLinks';
 import SignoutLinks from './SignoutLinks';
 import useHandlder from '../configHandler/useHandler';
 
-
 const Nav = () => {
   const { getAuthenticatedUser } = useHandlder();
-
-
   const Links = getAuthenticatedUser() === null ? <SignoutLinks /> : <SigninLinks />
   return (
     <nav className="nav-wrapper grey darken-3">

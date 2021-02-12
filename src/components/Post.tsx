@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 
-import { api } from './api'
 export default function Data() {
   const [users, setUsers] = useState({
     age: "",
@@ -24,7 +23,7 @@ export default function Data() {
       income: parseInt(users.income)
     })
 
-    const response = await fetch(//api,
+    const response = await fetch(process.env.REACT_APP_POST,
       {
         method: `POST`,
         headers: {
@@ -47,9 +46,7 @@ export default function Data() {
     fetchData();
   }, []);
   const fetchData = async () => {
-    const response = await fetch(
-      "https://sk9mu7qqs6.execute-api.us-east-1.amazonaws.com/dev/compare-yourself/all"
-    );
+    const response = await fetch();
     const data = await response.json();
     console.log(data);
     setData(data.item);
