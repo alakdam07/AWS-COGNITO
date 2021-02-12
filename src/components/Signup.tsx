@@ -35,11 +35,10 @@ const SignUp = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(state);
     userPool.signUp(username, password, attriList, null, (err, data) => {
       const { message } = err;
       if (message) setState({ ...state, error: message })
-      else { console.log(data) }
+      else { console.log("it works") }
     })
     setState({
       ...state,

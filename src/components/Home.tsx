@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { api } from "./api";
 import useHandlder from "./configHandler/useHandler";
 import { Redirect } from "react-router-dom";
 const Home = () => {

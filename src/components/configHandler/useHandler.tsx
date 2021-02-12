@@ -1,18 +1,13 @@
-import React, { useState, useCallback, useEffect, useMemo } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { CognitoUserPool } from 'amazon-cognito-identity-js';
 
 const Pool_Data = {
-  UserPoolId: 'us-east-1_9gLKIVCjP',
-  ClientId: '629n5o7ahjrpv6oau9reo669gv',
+  UserPoolId: process.env.REACT_APP_COGNITO_USERPOOL_ID,
+  ClientId: process.env.REACT_APP_COGNITO_ClIENT_ID
 };
 
 export default function useHandler() {
-  const [state, setstate] = useState({
-    loading: false,
-    isAuthenticated: false
-  })
 
-  const { loading, isAuthenticated } = state;
 
   const userPool = new CognitoUserPool(Pool_Data)
 
@@ -22,9 +17,6 @@ export default function useHandler() {
     [],
   );
 
-  console.log(getAuthenticatedUser());
-
-
   useEffect(() => {
     getAuthenticatedUser()
   }, [getAuthenticatedUser])
@@ -32,11 +24,7 @@ export default function useHandler() {
   const signOut = () => {
     return userPool.getCurrentUser()?.signOut()
   }
-  console.log(getAuthenticatedUser());
-
   return {
-    loading,
-    isAuthenticated,
     userPool,
     getAuthenticatedUser,
     signOut

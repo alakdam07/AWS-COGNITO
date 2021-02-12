@@ -38,7 +38,6 @@ const SignUp = () => {
 
     congnitoUser.authenticateUser(authDetails, {
       onSuccess(result: CognitoUserSession) {
-        console.log(result);
         setState({
           ...state,
           username: '',
@@ -46,8 +45,9 @@ const SignUp = () => {
         })
         if (result) {
           history.push("/");
+          window.location.reload();
         }
-        window.location.reload();
+
       },
       onFailure(err) {
         const { message } = err;
