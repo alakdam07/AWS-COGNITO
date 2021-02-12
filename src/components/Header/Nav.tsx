@@ -9,7 +9,7 @@ const Nav = () => {
   const { getAuthenticatedUser } = useHandlder();
 
 
-  const Links = getAuthenticatedUser() ? <SigninLinks /> : <SignoutLinks />
+  const Links = getAuthenticatedUser() === null ? <SignoutLinks /> : <SigninLinks />
   return (
     <nav className="nav-wrapper grey darken-3">
       <div className="container">
