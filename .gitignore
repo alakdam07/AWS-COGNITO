@@ -22,5 +22,5 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .env
-/.src/components/Post.tsx
+./src/components/Post
 .gitignore
