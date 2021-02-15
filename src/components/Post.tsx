@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-
 import { api } from './api'
 export default function Data() {
   const [users, setUsers] = useState({
@@ -47,9 +46,7 @@ export default function Data() {
     fetchData();
   }, []);
   const fetchData = async () => {
-    const response = await fetch(
-      "https://sk9mu7qqs6.execute-api.us-east-1.amazonaws.com/dev/compare-yourself/all"
-    );
+    const response = await fetch(REACT_APP_POST);
     const data = await response.json();
     console.log(data);
     setData(data.item);

@@ -12,12 +12,9 @@ const SignUp = () => {
     password: "",
     comfirmpassword: "",
     error: undefined,
-
   });
 
   const [confirm, setconfirm] = useState(false)
-
-
 
   const { username, email, password, comfirmpassword, error } = state;
   const attriList: CognitoUserAttribute[] = [];
@@ -35,22 +32,25 @@ const SignUp = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(state);
     userPool.signUp(username, password, attriList, null, (err, data) => {
-      const { message } = err;
-      if (message) setState({ ...state, error: message })
-      else { console.log(data) }
+      if (err) {
+        setState({ ...state, error: err?.message })
+      }
+      else {
+        alert('Please visit your email')
+      }
     })
+
+
     setState({
       ...state,
       username: "",
       email: "",
       password: "",
-      comfirmpassword: ""
+      comfirmpassword: "",
+      error: ""
     })
-
   }
-
 
   return (
     <div className="App">
@@ -107,7 +107,7 @@ const SignUp = () => {
               className="btn waves-effect waves-light"
               type="submit"
               name="action"
-              disabled={!state.username}
+              disabled={!username}
             >
               Submit
           </button>
@@ -117,7 +117,6 @@ const SignUp = () => {
             style={{ marginTop: 10 }}
             className="btn waves-effect waves-light"
             onClick={() => setconfirm(!confirm)}
-
           >
             Confirm
           </button>

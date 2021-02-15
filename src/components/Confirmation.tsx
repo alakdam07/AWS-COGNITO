@@ -1,20 +1,20 @@
 import React, { useState } from 'react'
-import { CognitoUserPool, CognitoUser } from 'amazon-cognito-identity-js';
+import { CognitoUser } from 'amazon-cognito-identity-js';
 import { useHistory } from "react-router-dom";
+import useHandlder from './configHandler/useHandler';
 
 
 const Confirmation = () => {
   const history = useHistory();
-  const poolData = {
-    UserPoolId: 'us-east-1_9gLKIVCjP',
-    ClientId: '629n5o7ahjrpv6oau9reo669gv',
-  };
+  const { userPool } = useHandlder();
+
   const [state, setState] = useState({
     username: "",
     verification: "",
+    error: ""
   })
 
-  const { username, verification } = state;
+  const { username, verification, error } = state;
   const handleChange = (e) => {
     setState({
       ...state,
@@ -26,7 +26,7 @@ const Confirmation = () => {
 
 
     e.preventDefault();
-    const userPool = new CognitoUserPool(poolData);
+
     const userData = {
       Username: username,
       Pool: userPool,
@@ -34,7 +34,7 @@ const Confirmation = () => {
     const cognitoUser = new CognitoUser(userData);
     cognitoUser.confirmRegistration(verification, true, (err, result) => {
       if (err) {
-        console.log(err);
+        setState({ ...state, error: err?.message })
       }
       else { history.push('/signin') }
     })
@@ -72,11 +72,13 @@ const Confirmation = () => {
           <button
             className="btn waves-effect waves-light"
             type="submit"
+            disabled={!username}
             name="action"
           >
             Submit
           </button>
         </form>
+        {error ? <p style={{ color: 'red' }}>{error}</p> : null}
       </div>
     </div>
   )
