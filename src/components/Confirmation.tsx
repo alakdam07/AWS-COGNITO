@@ -3,7 +3,6 @@ import { CognitoUser } from 'amazon-cognito-identity-js';
 import { useHistory } from "react-router-dom";
 import useHandlder from './configHandler/useHandler';
 
-
 const Confirmation = () => {
   const history = useHistory();
   const { userPool } = useHandlder();
@@ -23,8 +22,6 @@ const Confirmation = () => {
   }
 
   const handleSubmit = (e) => {
-
-
     e.preventDefault();
 
     const userData = {

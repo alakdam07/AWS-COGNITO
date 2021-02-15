@@ -99,8 +99,6 @@ const SignUp = () => {
       {error ? <p style={{ color: 'red' }}>{error}</p> : null}
     </div>
   </div>
-
-
 }
 
 export default SignUp;

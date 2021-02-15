@@ -98,12 +98,3 @@ export default function Data() {
     </div>
   );
 }
-
-
-// var xhr= new XMLHttpRequest();
-// xhr.open('POST', ' https://sk9mu7qqs6.execute-api.us-east-1.amazonaws.com/dev/compare-yourself');
-// xhr.onreadystatechange= function(event){
-//   console.log(event.target.response);
-// }
-// xhr.setRequestHeader('Content-Type', 'application/json');
-// xhr.send(JSON.stringify({age: 29, height:300, income:2}))
